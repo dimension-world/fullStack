@@ -68,7 +68,7 @@ export default defineConfig({
             { text: 'TypeScript起步', link: '/src/ts/' },
             { text: 'TypeScript核心', link: '/src/ts/core' },
             { text: 'TypeScript应用', link: '/src/ts/pro' },
-            { text: 'TS补充', link: '/src/ts/backup' },
+            { text: 'TypeScript补充', link: '/src/ts/backup' },
             { text: 'TS黑马头条案例', link: '/src/ts/case' },
           ],
         },
