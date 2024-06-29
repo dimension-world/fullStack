@@ -6,7 +6,7 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
   },
-  base: '/',
+  base: '/fullStack/',
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/public/lu.png' }],
   ],
