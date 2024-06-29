@@ -3,23 +3,25 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "全栈学习笔记"
+  text: "进阶之路"
+  tagline: 持续学习，持续进步。
+  image: 
+    src: ./lu.svg
+    alt: 背景图
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: 开始 →
+      link: /src/vue3/
     - theme: alt
-      text: API Examples
-      link: /api-examples
-
+      text: 阅读 🧑‍💻
+      link: /src/vue3/
+      
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 持续
+    details: 持续学习
+  - title: 专注
+    details: 保持专注
+  - title: 好奇
+    details: 保持好奇
 ---
-
