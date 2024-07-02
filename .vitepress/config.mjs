@@ -15,6 +15,12 @@ export default defineConfig({
     siteTitle: false,
     nav: [
       {
+        text: 'Markdown语法',
+        items: [
+          { text: '基础&拓展语法', link: '/src/Markdown/' },
+        ],
+      },
+      {
         text: '前端',
         items: [
           { text: 'JavaScript', link: '/src/JavaScript' },
@@ -41,6 +47,13 @@ export default defineConfig({
       },
     ],
     sidebar: {
+      '/src/Markdown': [
+        {
+          items: [
+            { text: 'Markdown', link: '/src/Markdown/' },
+          ],
+        },
+      ],
       '/src/JavaScript': [
         {
           text: 'JavaScript',
