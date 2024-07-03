@@ -112,11 +112,10 @@ export default defineConfig({
     },
 
     socialLinks: [{ icon: 'github', link: '#' }],
-    // footer: {
-    //   message: 'Released under the MIT License.',
-    //   copyright: 'Copyright © 2024',
-    // },
-    //搜索
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2024',
+    },
     search: {
       provider: 'local',
       options: {
