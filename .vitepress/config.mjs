@@ -23,14 +23,14 @@ export default defineConfig({
       {
         text: '前端',
         items: [
-          { text: 'JavaScript', link: '/src/JavaScript' },
+          { text: 'JavaScript', link: '/src/JavaScript/' },
           { text: 'Vue2', link: '/' },
           { text: 'VueRouter', link: '/' },
           { text: 'VueX', link: '/' },
           { text: 'Vue3', link: '/src/vue3/' },
           { text: 'TypeScript', link: '/src/ts/' },
           { text: 'Pinia', link: '/src/pinia/' },
-          { text: 'Vue3项目', link: '/src/project/index' },
+          { text: 'Vue3项目', link: '/src/project/' },
         ],
       },
       {
@@ -46,7 +46,7 @@ export default defineConfig({
         ],
       },
     ],
-    sidebar: {
+    sidebar: {  
       '/src/Markdown': [
         {
           items: [
@@ -58,9 +58,7 @@ export default defineConfig({
         {
           text: 'JavaScript',
           items: [
-            { text: 'js', link: '/src/JavaScript/' },
-            { text: '1.正则', link: '/src/JavaScript/1.正则' },
-            { text: '综合案例', link: '/src/JavaScript/' },
+            { text: '正则', link: '/src/JavaScript/reg' },
           ],
         },
       ],
@@ -114,10 +112,10 @@ export default defineConfig({
     },
 
     socialLinks: [{ icon: 'github', link: '#' }],
-    footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024',
-    },
+    // footer: {
+    //   message: 'Released under the MIT License.',
+    //   copyright: 'Copyright © 2024',
+    // },
     //搜索
     search: {
       provider: 'local',
