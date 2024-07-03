@@ -58,7 +58,7 @@ export default defineConfig({
         {
           text: 'JavaScript',
           items: [
-            { text: '正则', link: '/src/JavaScript/reg' },
+            { text: '正则', link: '/src/JavaScript/RegExp' },
           ],
         },
       ],
@@ -140,21 +140,21 @@ export default defineConfig({
       },
     },
   },
-  build: {
-    chunkSizeWarningLimit: 1500, // 调整包的大小
-    rollupOptions: {
-      output: {
-        // 最小化拆分包
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return id
-              .toString()
-              .split('node_modules/')[1]
-              .split('/')[0]
-              .toString()
-          }
-        }
-      },
-    },
-  },
+  // build: {
+  //   chunkSizeWarningLimit: 1500, // 调整包的大小
+  //   rollupOptions: {
+  //     output: {
+  //       // 最小化拆分包
+  //       manualChunks(id) {
+  //         if (id.includes('node_modules')) {
+  //           return id
+  //             .toString()
+  //             .split('node_modules/')[1]
+  //             .split('/')[0]
+  //             .toString()
+  //         }
+  //       }
+  //     },
+  //   },
+  // },
 })
