@@ -58,7 +58,7 @@ export default defineConfig({
         {
           text: 'JavaScript',
           items: [
-            { text:'正则表达式' , link: '/src/Javascript/RegExp'}
+            { text:'正则表达式' , link: '/src/JS/RegExp'}
           ],
         },
       ],
