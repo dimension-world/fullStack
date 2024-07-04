@@ -23,7 +23,7 @@ export default defineConfig({
       {
         text: '前端',
         items: [
-          { text: 'JavaScript', link: '/src/origin/' },
+          { text: 'JavaScript', link: '/src/origin/RegExp' },
           { text: 'Vue2', link: '/' },
           { text: 'VueRouter', link: '/' },
           { text: 'VueX', link: '/' },
