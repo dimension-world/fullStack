@@ -31,6 +31,7 @@ export default defineConfig({
           { text: 'TypeScript', link: '/src/ts/' },
           { text: 'Pinia', link: '/src/pinia/' },
           { text: 'Vue3项目', link: '/src/project/' },
+          { text: 'Koa', link: '/src/koa/' },
         ],
       },
       {
@@ -107,7 +108,15 @@ export default defineConfig({
             { text: '二次开发-问医生', link: '/src/project/doctor' },
           ],
         },
-      ],
+      ],      
+      '/src/koa/':[
+        {
+          text:'Koa',
+          items:[
+           
+          ]
+        }
+      ]
     },
 
     socialLinks: [{ icon: 'github', link: '#' }],
