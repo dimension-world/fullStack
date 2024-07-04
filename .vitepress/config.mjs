@@ -56,7 +56,6 @@ export default defineConfig({
       ],
       '/src/origin': [
         {
-          text: 'JavaScript',
           items: [
             { text:'正则表达式' , link: '/src/origin/RegExp'}
           ],
