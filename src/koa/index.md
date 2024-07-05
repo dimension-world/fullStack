@@ -1,6 +1,7 @@
 # Koa
 >什么是koa
 >Koa和Express一样，都是基于node.js的web应用开发框架。
+>一般轻量级用koa，重量级用egg
 
 koa：下一代的node.js Web框架；
 - 由Express框架的原班人马设计和开发
