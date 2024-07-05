@@ -350,3 +350,37 @@ app.use(async (ctx, next) => {
 - **next 前的逻辑 : 进行前期处理**
 - **调用next，将控制流交给下个中间件，并await其完成，直到后面没有中间件或者没有next函数执行为止**
 - **完成后一层层回溯执行各个中间件的后期处理（next 后的逻辑）**
+
+### 用koa-body处理post传参
+> 我们自己来处理获取 POST 请求的参数比较繁琐，实际开发中可以使用封装好的开源中间件
+我们可以在 [Koa 官方wiki](https://github.com/koajs/koa/wiki) 上找到很多优秀的开源中间件。而 [koa-body](https://github.com/koajs/koa-body) 是一个专门用于获取通过请求体传递的数据的中间件。
+
+使用步骤：
+
+1. 安装依赖包
+
+```bash
+npm i koa-body
+```
+
+2. 引入并使用 koa-body
+
+```js
+// 引入 koa-body
+const koaBody = require('koa-body')
+
+// ...
+
+// 为 Koa 实例设置 koa-body 中间件
+app.use(koaBody())
+
+app.use(async ctx => {
+  // 通过 ctx.request.body 获取请求体参数
+  console.log('请求体参数', ctx.request.body)
+  ctx.body = 'Hello'
+})
+```
+
+### 用koa-views 和 EJS 渲染页面
+> 完成服务端
+
