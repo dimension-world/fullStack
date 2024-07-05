@@ -13,12 +13,16 @@ export default defineConfig({
   themeConfig: {
     logo: '/lu.png',
     siteTitle: false,
+    // markdown:{
+    //   toc:{
+    //     level:[1,2,3]
+    //   }
+    // },
+    sidebarDepth:5,
     nav: [
       {
         text: 'Markdown语法',
-        items: [
-          { text: '基础&拓展语法', link: '/src/Markdown/' },
-        ],
+        items: [{ text: '基础&拓展语法', link: '/src/Markdown/' }],
       },
       {
         text: '前端',
@@ -47,19 +51,15 @@ export default defineConfig({
         ],
       },
     ],
-    sidebar: {  
+    sidebar: {
       '/src/Markdown': [
         {
-          items: [
-            { text: 'Markdown', link: '/src/Markdown/' },
-          ],
+          items: [{ text: 'Markdown', link: '/src/Markdown/' }],
         },
       ],
       '/src/origin': [
         {
-          items: [
-            { text:'正则表达式' , link: '/src/origin/RegExp'}
-          ],
+          items: [{ text: '正则表达式', link: '/src/origin/RegExp' }],
         },
       ],
       '/src/vue3': [
@@ -108,15 +108,13 @@ export default defineConfig({
             { text: '二次开发-问医生', link: '/src/project/doctor' },
           ],
         },
-      ],      
-      '/src/koa/':[
+      ],
+      '/src/koa/': [
         {
-          text:'Koa',
-          items:[
-           
-          ]
-        }
-      ]
+          text: 'Koa',
+          items: [],
+        },
+      ],
     },
 
     socialLinks: [{ icon: 'github', link: '#' }],
