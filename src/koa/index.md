@@ -78,4 +78,131 @@ app.listen(3000, () => {
 
 ```
 
-## ctx（上下文访问器）别名 官网了解
+### ctx（上下文访问器）别名 官网了解
+ > 对请求和响应进行了简写，例如：ctx.response.body可以写成ctx.body
+
+### 处理post请求参数
+> 在中间件中获取POST请求通过请求体发送的参数数据
+获取POST请求发送的请求体参数，大致思路如下：
+1. 监听node.js原生请求对象的 **==data==** 事件，从请求体中获取数据，并将所有数据拼合起来，（因为如果请求体中携带的数据量较大，就会分几次来触发data事件，逐步获取）
+2. 监听node.js原生请求对象的end事件，获知请求体数据被完全获取
+```js
+const koa = require('koa')
+
+const app = new koa()
+
+app.use(async ctx => {
+  let paramStr = ''
+  // ctx.request ctx.response 是koa的请求和响应对象
+  // ctx.req  ctx.res  是node原生的
+  // 1.监听node.js原生Request对象的data事件，获取请求体数据
+  ctx.req.on('data',(data) => {
+    // 从请求体中获取数据，并拼接成一整个字符串
+    paramStr += data
+  })
+  // 2.监听node.js原生Request对象的end事件，结束请求体数据获取
+  ctx.req.on('end',() => {
+    // paramStr 是查询字符串式的数据，可以用new URLSearchParams解析
+    //语法：var URLSearchParams = new URLSearchParams(init);
+    // 到node官网详细了解对应的方法
+    // params.get(key)
+    // params.has(key)
+    // params.keys() 拿到所有的键，返回一个ES6 Iterator  可供 for of 遍历
+    const params = new URLSearchParams(paramsStr)
+    console.log('请求体参数（字符串形式）'，paramStr)
+    console.log('请求体参数（对象形式）'，params)
+  })
+})
+
+app.listen(3000,()=>{
+  console.log('服务器启动了')
+})
+```
+`URLSearchParams` 语法说明:
+
+```jsx
+const params = new URLSearchParams('k=%E5%85%B3%E9%94%AE%E5%AD%97&p=1');
+console.log(params.get('k'));   // 返回字符串“关键字”，支持自动 UTF-8 解码
+console.log(params.get('p'));   // 返回字符串“1”
+console.log(params.get('xxx')); // 如果没有 xxx 这个键，则返回 null
+console.log(params.has('xxx')); // 当然也可以通过 has() 方法查询是否存在指定的键
+console.log(params.keys());     // 返回一个 ES6 Iterator，内含 ['k', 'p']
+console.log(params.values());   // 返一个 ES6 Iterator，内含 ['关键字', '1']
+```
+
+MDN: https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams/URLSearchParams
+
+知乎:  https://zhuanlan.zhihu.com/p/29581070
+
+### 响应一个页面
+方式一：直接响应一个 HTML 字符串给客户端
+
+```js
+app.use(async ctx => {
+  // 为响应体设置 HTML 字符串内容
+  ctx.body = `
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<title>Document</title>
+    </head>
+
+    <body>
+    	<h1>你好，世界</h1>
+    </body>
+
+    </html>
+	`
+})
+```
+
+方式二：读取 html 文件后，将读取到的 HTML 字符串响应给客户端
+
+```html
+<!-- 编写 index.html 文件 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>你好，世界</h1>
+  </body>
+
+</html>
+```
+
+```js
+// 导入文件读取模块
+const fs = require('fs')
+
+// 读取 html 文件的工具函数
+function getHtmlFile(filePath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        reject(err)
+      } else {
+	    // 读取的文件数据是 Buffer 形式，要用 toString() 转成字符串
+        resolve(data.toString())
+      }
+    })
+  })
+}
+
+app.use(async ctx => {
+  // 读取 index.html 文件后，设置到响应体
+  ctx.body = await getHtmlFile('./index.html')
+})
+```
+
