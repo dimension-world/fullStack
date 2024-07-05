@@ -384,3 +384,226 @@ app.use(async ctx => {
 ### 用koa-views 和 EJS 渲染页面
 > 完成服务端
 
+在 Koa 中，我们也可以使用模板引擎，通过模板语法将数据动态渲染成html页面内容，然后发送到客户端去。
+
+[koa-views](https://github.com/queckezz/koa-views) 是一个支持使用多种模板引擎来渲染页面的中间件，在本章中我们要使用 EJS 模板。
+
+使用步骤：
+
+1. 安装 koa-views 中间件 和 ejs 模板引擎
+
+```bash
+npm i koa-views ejs
+```
+
+2. 引入并使用中间件
+
+```js
+// 引入 koa-views
+var views = require('koa-views');
+
+// 配置和应用 koa-views 中间件（这里配置使用了 ejs 模板引擎，以及模板文件的存放目录）
+app.use(views(__dirname + '/views', { extension: 'ejs' }))
+
+// 引入 koa-views 后，就可以使用 ctx.render 函数渲染 ejs 模板文件了
+app.use(async ctx => {
+  // render 函数的第一个参数是模板文件名；第二个参数是要渲染到模板中的动态数据
+  await ctx.render('test', {
+    name: '小明',
+    age: 18,
+    books: ['三国演义', '红楼梦', '西游记', '水浒传']
+  })
+})
+```
+
+模板文件 `views/test.ejs`
+
+```ejs
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>姓名：<%= name %></div>
+    <div>年龄：<%= age %></div>
+    <ul>
+        <% books.forEach(function (book) { %>
+            <li><%= book %></li>
+        <% }) %>
+    </ul>
+</body>
+
+</html>
+```
+### 用 koa-static 处理静态资源
+
+** koa-static中间件, 处理静态资源**
+
+> 我们自己处理静态资源的话，代码会较为繁琐，因此实际开发中可以借助封装好开源中间件，比如 koa-static
+
+[查看 koa-static 中间件](https://github.com/koajs/static) 
+
+使用步骤：
+
+1. 安装依赖包
+
+```bash
+npm i koa-static
+```
+
+2. 创建 static 目录，并放入一些静态资源文件（图片等）
+
+3. 配置中间件
+
+```js
+// 引入 koa-body
+const koaStatic = require('koa-static')
+
+// ...
+
+// 调用 koaStatic() 能自定义一些配置，并返回一个真正的 koa-static 中间件函数，然后设置给 Koa 实例使用
+app.use(koaStatic('./static'))
+```
+
+## 用 koa-body 处理文件上传
+
+** 使用 koa-body 实现文件上传接口,  处理文件上传**
+
+> 通过 koa-body 中间件，从请求体中读取客户端上传的二进制文件数据
+
+通过使用 koa-body 中间件，不光能方便的获取请求体中的普通文本参数，也可获取二进制的文件数据，因此可以处理文件上传的场景。
+
+使用步骤：
+
+1. 配置 koa-body，使其支持处理文件上传
+
+```js
+// 引入 koa-body
+const koaBody = require('koa-body')
+
+// 调用 koaBody() 并进行文件上传处理相关的配置
+app.use(koaBody({
+    // 开启文件上传支持
+    multipart: true,
+  
+    // 上传文件相关配置
+    formidable: {
+        // 文件上传到的目录
+        uploadDir: './upload',
+      
+        // 保留上传文件的后缀名（默认为 false，所有上传的文件都会被去除后缀名)
+        keepExtensions: true
+    }
+}))
+```
+
+2. 在我们自己的中间件中，获取客户端通过 FormData 传递过来的文件及其他参数
+
+```js
+app.use(async ctx => {
+    // 获取上传的文件信息
+    console.log('请求体中的文件', ctx.request.files)
+
+    // 获取请求体中的其他参数
+    console.log('请求体中的其他参数', ctx.request.body)
+
+    ctx.body = 'Hello'
+})
+```
+
+## 用 koa-router 实现后端路由
+
+**本节目标: 使用 koa-router 实现服务端路由**
+
+> 了解如何使用 koa-router 方便的实现服务端路由
+
+自己实现不同的路由示例：
+
+```js
+const Koa = require('koa')
+const app = new Koa()
+
+app.use(async ctx => {
+  // 获取客户端请求的 URL 路径
+  const url = ctx.url
+  const method = ctx.method
+
+  // 根据路径来判断具体要做的业务逻辑
+  if (method === 'GET' && url === '/login') {
+    ctx.body = '这是登录页'
+  } else if (method === 'POST' && url === '/login') {
+    ctx.body = '登录处理成功'
+  } else if (method === 'GET' && url === '/register') {
+    ctx.body = '这是注册页'
+  } else if (method === 'POST' && url === '/register') {
+    ctx.body = '注册处理成功'
+  } else {
+    ctx.body = '404 Not Found'
+  }
+})
+
+app.listen(3000, () => {
+  console.log('请访问 http://localhost:3000')
+})
+```
+
+> 以上做法的弊端是：随着路由路径的增加，中间件代码变得很复杂。
+>
+> 而借助 [koa-router](https://github.com/koajs/router) 中间件，可以很清晰的创建和管理多个路由。
+
+
+
+使用步骤：
+
+1. 安装依赖包
+
+```
+npm i @koa/router
+```
+
+2. 引入 koa-router 并创建 Router 实例
+
+```js
+// 引入 koa-router
+const Router = require('@koa/router')
+
+// 创建 Router 实例
+const router = new Router()
+```
+
+3. 在 Router 实例上创建路由处理器
+
+```js
+// 静态路由 GET /login
+router.get('/login', async ctx => {
+    ctx.body = '这是登录页'
+})
+
+// 静态路由 POST /login
+router.post('/login', async ctx => {
+    ctx.body = '登录处理成功'
+})
+
+// 动态路由 GET /articles/123
+router.get('/articles/:id', async ctx => {
+    const id = ctx.params.id
+    console.log(">>>>>>>> 动态路由参数 ID：", id);
+    ctx.body = `ID 为 ${id} 的内容`
+})
+```
+
+4. 根据 router 生成路由相关的实际中间件函数，并设置给 Koa 实例
+
+```js
+app.use(router.routes())
+```
+
+
+
+
