@@ -189,7 +189,7 @@ const fs = require('fs')
 // 读取 html 文件的工具函数
 function getHtmlFile(filePath) {
   return new Promise((resolve, reject) => {
-    fs.readFile(filePath, (err, data) => {
+    fs.readFile(path.join(__dirname,filePath), (err, data) => {
       if (err) {
         reject(err)
       } else {
@@ -205,4 +205,40 @@ app.use(async ctx => {
   ctx.body = await getHtmlFile('./index.html')
 })
 ```
+
+### 处理图片
+处理静态资源的思路，和之前响应 html 文件给客户端是类似的，也是先读取文件，再设置给响应体。
+
+以下是响应一张图片的实例：
+
+1. 先在项目目录中建立一个 static 目录，并放置一张图片文件（本例中是 01.jpg）
+2. 编写下面的代码，实现读取图片并响应给客户端的操作
+
+```js
+// 导入文件读取模块
+const fs = require('fs')
+
+// 获取静态资源文件的
+function getImageFile(filePath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        reject(err)
+      } else {
+        // 这里保持 Buffer 格式数据，因为图片是二进制数据，不要转成字符串
+        resolve(data)
+      }
+    })
+  })
+}
+
+app.use(async ctx => {
+  // 【重要】正确设置静态资源的 Content-Type 响应头，否则在浏览器中只会下载文件，不能查看到图片
+  ctx.set('Content-Type', 'image/jpeg')
+
+  // 在响应体中设置读取到的图片文件数据
+  ctx.body = await getImageFile('./static/01.jpg')
+})
+```
+
 
