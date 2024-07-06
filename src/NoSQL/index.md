@@ -12,7 +12,7 @@
 
 
 
-<img src="./NoSQL.assets/image-20210529092655969.png" alt="image-20210529092655969" style="zoom:50%;" />
+<img src="./assets/image-20210529092655969.png" alt="image-20210529092655969" style="zoom:50%;" />
 
 
 
@@ -70,7 +70,7 @@
 
 
 
-<img src="./NoSQL.assets/image-20210529093141572.png" alt="image-20210529093141572" style="zoom:50%;" />
+<img src="./assets/image-20210529093141572.png" alt="image-20210529093141572" style="zoom:50%;" />
 
 
 
@@ -182,7 +182,7 @@ MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源
 
 MongoDB 将数据存储为一个文档，数据结构由键值(key=>value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。
 
-<img src="./NoSQL.assets/crud-annotated-document.png" alt="img" style="zoom:80%;" />
+<img src="./assets/crud-annotated-document.png" alt="img" style="zoom:80%;" />
 
 
 
@@ -200,7 +200,7 @@ MongoDB 将数据存储为一个文档，数据结构由键值(key=>value)对组
 
 Redis 的安装文件下载地址：https://github.com/tporadowski/redis/releases
 
-<img src="./NoSQL.assets/image-20210529100935629.png" alt="image-20210529100935629" style="zoom:50%;" />
+<img src="./assets/image-20210529100935629.png" alt="image-20210529100935629" style="zoom:50%;" />
 
 
 
@@ -326,7 +326,7 @@ mongod --dbpath=C:\data\db
 
 MongoDB 服务器启动后，访问 http://localhost:27017，如果出现这样的结果则表示已经成功：
 
-<img src="./NoSQL.assets/image-20210606163204512.png" alt="image-20210606163204512" style="zoom:50%;" />
+<img src="./assets/image-20210606163204512.png" alt="image-20210606163204512" style="zoom:50%;" />
 
 ---
 
@@ -351,7 +351,7 @@ MongoDB 服务器启动后，访问 http://localhost:27017，如果出现这样�
 
   ...
 
-```
+```js
 插入数据演示:
 	db.users.insert({ name: 'Jack', age: 18 })
 	
@@ -372,7 +372,7 @@ MongoDB中的数据存储结构:
 
 MongoDB是文档型数据库, 存储的都是一些 JSON 格式数据
 
-```jsx
+```js
 {
   // 数据库 database
   "test1": {
@@ -418,25 +418,25 @@ MongoDB是文档型数据库, 存储的都是一些 JSON 格式数据
 
 - 查看数据库列表:  
 
-```
+```js
 show dbs
 ```
 
 - 查看当前数据库:
 
-```
+```js
 db
 ```
 
 - 创建/切换数据库:   (数据库只有真正的有了数据才会被创建出来)
 
-```
+```js
 use 数据库名
 ```
 
 - 删除当前数据库: 
 
-```
+```js
 db.dropDatabase()
 ```
 
@@ -446,19 +446,19 @@ db.dropDatabase()
 
 - 创建集合: 只需要往集合中插入数据, 集合会自动创建
 
-```
+```js
 db.集合名.insert({ name: 'zs', age: 18 })
 ```
 
 - 查看集合
 
-```
+```js
 show collections
 ```
 
 - 删除集合
 
-```
+```js
 db.集合名称.drop()
 ```
 
@@ -473,7 +473,7 @@ db.集合名称.drop()
 
 - 字段名称 `_id` 保留用作主键；它的值在集合中必须是唯一的，不可变的，并且可以是数组以外的任何类型。
 
-```
+```js
 > db.users.find()
 { "_id" : ObjectId("619cc474cc1980baa07f2c24"), "name" : "Jack", "age" : 18 }
 ```
@@ -489,7 +489,7 @@ db.集合名称.drop()
 
 ### 创建文档 (增)
 
-```
+```js
 db.集合名.insertOne({ ... }) 插入一个
 
 db.集合名.insertMany([{ ... }, { ... }]) 插入多个
@@ -499,7 +499,7 @@ db.集合名.insert({ ... }) 插入一个或多个
 
 ### 查询文档 (查)
 
-```
+```js
 db.集合名.find()  查询所有
 
 db.集合名.find().pretty()  查询并格式化
@@ -509,7 +509,7 @@ db.集合名.find(查询条件, { 键: 0/1 })   0表示排除, 1表示包含
 
 相等条件
 
-```
+```js
 db.集合名.find({
   键: 值
 })
@@ -519,7 +519,7 @@ AND 条件
 
 其他查询运算符: https://docs.mongodb.com/manual/reference/operator/query-comparison/
 
-```
+```js
 db.集合名.find({
   键: 值,
   键: 值,
@@ -532,7 +532,7 @@ db.集合名.find({
 
 OR 条件
 
-```
+```js
 db.集合名.find({
   $or: [
   	{ 键: 值 },
@@ -543,7 +543,7 @@ db.集合名.find({
 
 ### 更新文档 (改)
 
-```
+```js
 // 更新第一个满足条件的项
 db.集合名.updateOne(查询条件, {
 	$set: {
@@ -587,7 +587,7 @@ yarn add mongodb koa @koa/router
 
 2. 创建 db 模块,  使用 mongodb 驱动包连接 MongoDB 服务器
 
-```jsx
+```js
 // 1. 引入 mongodb 驱动包
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
@@ -607,7 +607,7 @@ module.exports = db
 
 3. 创建路由模块
 
-```jsx
+```js
 const Router = require('@koa/router')
 
 const router = new Router()
@@ -624,7 +624,7 @@ module.exports = router
 
 4. 挂载路由
 
-```jsx
+```js
 const Koa = require('koa')
 const router = require('./router')
 const app = new Koa()
@@ -765,7 +765,7 @@ for (const item of arr) {
 
 查看目前MongoDB中的所有用户
 
-```jsx
+```js
 use admin
 
 show users
@@ -779,7 +779,7 @@ db.createUser({ user: 'root', pwd: '123456', roles: ["root"]})
 
 重新打开cmd，在mongodb路径的bin目录下，执行
 
-```jsx
+```js
 mongod --dbpath=C:\data\db  --auth  (data是安装mongodb创建的数据库文件夹)
 ```
 
