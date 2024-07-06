@@ -324,10 +324,7 @@ mongod --dbpath=C:\data\db
 # mongod 为 MongoDB 的服务器程序
 # 数据文件目录默认为 /data/db
 
-// Mac 启动MongoDB
-mongod --fork --dbpath data --logpath log/mongo.log --logappend
-// 如果出错运行下面的命令
-mongod --dbpath data --logpath log/mongo.log --logappen
+[mac启动方式](https://www.mongodb.com/zh-cn/docs/manual/tutorial/install-mongodb-on-os-x/#overview)
 ```
 
 **验证**
