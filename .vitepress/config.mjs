@@ -36,6 +36,7 @@ export default defineConfig({
           { text: 'Pinia', link: '/src/pinia/' },
           { text: 'Vue3项目', link: '/src/project/' },
           { text: 'Koa', link: '/src/koa/' },
+          { text: 'NoSQL', link: '/src/NoSQL/' }
         ],
       },
       {
@@ -109,12 +110,7 @@ export default defineConfig({
           ],
         },
       ],
-      '/src/koa/': [
-        {
-          text: 'Koa',
-          items: [],
-        },
-      ],
+  
     },
 
     socialLinks: [{ icon: 'github', link: '#' }],
