@@ -235,6 +235,15 @@ get mynum         # 查看 mynum 结果为 2
 
 [【更多操作参考操作命令手册】](http://doc.redisfans.com/)
 
+```js
+// 在Mac中的操作步骤
+// 1.用homebrew安装redis
+   brew install redis
+// 2.启动redis
+   redis-server
+// 3.新建窗口运行
+   redis-cli
+```
 ---
 
 
