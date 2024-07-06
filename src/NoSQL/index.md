@@ -318,7 +318,7 @@ mongod --dbpath=C:\data\db
 
 **验证**
 
-MongoDB 服务器启动后，访问 http://localhost:27017，如果出现这样的结果则表示已经成功：
+MongoDB 服务器启动后，访问 `http://localhost:27017`，如果出现这样的结果则表示已经成功：
 
 <img src="./assets/image-20210606163204512.png" alt="image-20210606163204512" style="zoom:50%;" />
 
