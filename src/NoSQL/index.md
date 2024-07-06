@@ -326,6 +326,8 @@ mongod --dbpath=C:\data\db
 
 // Mac 启动MongoDB
 mongod --fork --dbpath data --logpath log/mongo.log --logappend
+// 如果出错运行下面的命令
+mongod --dbpath data --logpath log/mongo.log --logappen
 ```
 
 **验证**
