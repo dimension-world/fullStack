@@ -36,7 +36,7 @@ export default defineConfig({
           { text: 'Pinia', link: '/src/pinia/' },
           { text: 'Vue3项目', link: '/src/project/' },
           { text: 'Koa', link: '/src/koa/' },
-          { text: 'NoSQL', link: '/src/nosql/' }
+          { text: 'NoSQL', link: '/src/NoSQL/' }
         ],
       },
       {
