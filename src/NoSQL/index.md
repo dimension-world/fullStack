@@ -655,11 +655,14 @@ router.get('/add', async ctx => {
 
   const info = await collection.insertOne({ name: 'Tom', age: 18 })
   console.log(info)
-
-  collection.find().forEach(item => {
+  //已经废弃
+  // collection.find().forEach(item => {
+  //   console.log(item)
+  // })
+  const arr = collection.find()
+  for await(const item of arr){
     console.log(item)
-  })
-
+  }
   ctx.body = '操作完成'
 })
 
