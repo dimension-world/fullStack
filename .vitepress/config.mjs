@@ -18,7 +18,7 @@ export default defineConfig({
     //     level:[1,2,3]
     //   }
     // },
-    sidebarDepth:5,
+    sidebarDepth: 5,
     nav: [
       {
         text: 'Markdown语法',
@@ -35,9 +35,9 @@ export default defineConfig({
           { text: 'TypeScript', link: '/src/ts/' },
           { text: 'Pinia', link: '/src/pinia/' },
           { text: 'Vue3项目', link: '/src/project/' },
-          { text: 'app项目', link: '/src/app/' },
+          { text: 'app项目', link: '/src/uniapp/' },
           { text: 'Koa', link: '/src/koa/' },
-          { text: 'NoSQL', link: '/src/NoSQL/' }
+          { text: 'NoSQL', link: '/src/NoSQL/' },
         ],
       },
       {
@@ -113,15 +113,18 @@ export default defineConfig({
       ],
       '/src/app':[
         {
-          text:'apps项目',
+          text:'uniapp项目',
           items:[
-            {text:'app基础',link: '/src/app/' }
+            {text:'app基础',link: '/src/uniapp/' }
           ]
         }
       ],
-      '/src/Java':[
-
-      ]
+      '/src/Java': [
+        {
+          text: 'Java基础',
+          items: [{ text: 'java', link: '/src/Java/' }],
+        },
+      ],
     },
 
     socialLinks: [{ icon: 'github', link: '#' }],
