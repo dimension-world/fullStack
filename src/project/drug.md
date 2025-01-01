@@ -4,7 +4,7 @@
 
 > 理解开药门诊阶段流程分析
 
-![开药门诊流程](https://zhousg.github.io/patient-h5-note/assets/image-20231010175804736.74d78bbf.png)
+![开药门诊流程](./images/1.png)
 
 ## 开药门诊-表单页面路由搭建
 

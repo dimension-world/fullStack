@@ -35,6 +35,7 @@ export default defineConfig({
           { text: 'TypeScript', link: '/src/ts/' },
           { text: 'Pinia', link: '/src/pinia/' },
           { text: 'Vue3项目', link: '/src/project/' },
+          { text: 'app项目', link: '/src/app/' },
           { text: 'Koa', link: '/src/koa/' },
           { text: 'NoSQL', link: '/src/NoSQL/' }
         ],
@@ -42,7 +43,7 @@ export default defineConfig({
       {
         text: '后端',
         items: [
-          { text: '待定', link: '/' },
+          { text: 'Java基础', link: '/src/Java' },
           { text: '待定', link: '/' },
           { text: '待定', link: '/' },
           { text: '待定', link: '/' },
@@ -110,7 +111,17 @@ export default defineConfig({
           ],
         },
       ],
-  
+      '/src/app':[
+        {
+          text:'apps项目',
+          items:[
+            {text:'app基础',link: '/src/app/' }
+          ]
+        }
+      ],
+      '/src/Java':[
+
+      ]
     },
 
     socialLinks: [{ icon: 'github', link: '#' }],
